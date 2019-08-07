@@ -26,31 +26,18 @@
     <?php if(!is_page_template( 'blank-page.php' ) && !is_page_template( 'blank-page-with-container.php' )): ?>
 	<header id="masthead" class="site-header navbar-static-top <?php echo wp_bootstrap_starter_bg_class(); ?>" role="banner">
         <div class="container">
-            <nav class="navbar navbarhome navbar-expand-md navbar-light bg-light">
-            <?php
-                wp_nav_menu(array(
-                'theme_location'    => 'left_menu',
-                'container'       => 'div',
-                'container_id'    => 'left-nav',
-                'container_class' => 'navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0 px-5 px-md-0',
-                'menu_id'         => false,
-                'menu_class'      => 'navbar-nav ml-auto mr-auto text-center',
-                'depth'           => 3,
-                'fallback_cb'     => 'wp_bootstrap_navwalker::fallback',
-                'walker'          => new wp_bootstrap_navwalker()
-                ));
-                ?>
-                <div id="logosmall" class="navbar-brand mx-auto my-2 order-0 order-md-1 position-relative">
+        <nav class="navbar navbar-expand-xl navbar-light">
+                <div class="navbar-brand">
                     <?php if ( get_theme_mod( 'wp_bootstrap_starter_logo' ) ): ?>
                         <a href="<?php echo esc_url( home_url( '/' )); ?>">
-                            <img src="<?php echo esc_url( home_url( '/' )); ?>wp-content/uploads/2019/01/semreservaslogo.png" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+                            <img src="<?php echo esc_attr(get_theme_mod( 'wp_bootstrap_starter_logo' )); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
                         </a>
                     <?php else : ?>
                         <a class="site-title" href="<?php echo esc_url( home_url( '/' )); ?>"><?php esc_url(bloginfo('name')); ?></a>
                     <?php endif; ?>
 
                 </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -59,9 +46,9 @@
                 'theme_location'    => 'primary',
                 'container'       => 'div',
                 'container_id'    => 'main-nav',
-                'container_class' => 'navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2  px-5 px-md-0',
+                'container_class' => 'collapse navbar-collapse justify-content-center',
                 'menu_id'         => false,
-                'menu_class'      => 'navbar-nav mr-auto ml-auto text-center',
+                'menu_class'      => 'navbar-nav',
                 'depth'           => 3,
                 'fallback_cb'     => 'wp_bootstrap_navwalker::fallback',
                 'walker'          => new wp_bootstrap_navwalker()

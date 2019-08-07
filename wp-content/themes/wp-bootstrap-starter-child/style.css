@@ -21,11 +21,18 @@ Text Domain: wp-bootstrap-starter
 #responsive (all)
 */
 @import url("../wp-bootstrap-starter/style.css");
-@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
+
 body {
-	font-family: 'PT Sans Narrow', sans-serif;
+	font-family: 'Roboto', sans-serif;
     margin: 0;
-    background: #fff url('img/bg.png') repeat;
+	background-color: #f9bbb5;
+	background-image: url(img/shapes/aya-shape-04.svg), url(img/shapes/aya-shape-03.svg);
+	background-position: -100px 100px, 0 0;
+	background-repeat:no-repeat;
+}
+/** O que é AYA **/
+body.page-id-17 {
+	background: #50abf1;
 }
 /* General rules 
 --------------------------------------------- */
@@ -116,15 +123,22 @@ div#page-sub-header p {
 	margin-bottom: 1.875rem;
 }
 /* #header **/
-header#masthead, #masthead nav {
-    background: none !important;
+header#masthead {
+	background-image: url(img/bg-header.png);
+	background-position-x: center;
+	background-position-y: -50px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: #9ad9e7;
     box-shadow: none;
     z-index: 9999;
 }
-
+#masthead nav {
+	background: none !important;
+}
 
 body:not(.theme-preset-active) #masthead .navbar-nav > li > a {
-	color:#4e4e4e;
+	color:#0d163c;
 	font-size: 0.975rem;
 	position: relative;
 	padding:0.5rem 1.5rem;
@@ -139,12 +153,12 @@ body:not(.theme-preset-active) #masthead .navbar-nav > li > a:not(.dropdown-togg
 }
 
 body:not(.theme-preset-active) #masthead .navbar-nav > li > a:hover, body:not(.theme-preset-active) #masthead .navbar-nav > li.current_page_item > a {
-	color:#4e4e4e;	
+	color:#f16979;	
 	font-weight: 500;
 }
 body:not(.theme-preset-active) #masthead .navbar-nav > li > a:not(.dropdown-toggle):hover:after, body:not(.theme-preset-active) #masthead .navbar-nav > li.current_page_item > a:after {
 	width: 100%;
-	background:#f5be16;
+	background:#f16979;
 	-o-transition:.5s;
   	-ms-transition:.5s;
     -moz-transition:.5s;
@@ -242,7 +256,7 @@ article .entry-content p, article .entry-content blockquote, article .entry-cont
 }
 
 #sr-author-box p {
-	font-size 1.1rem;
+	font-size: 1.1rem;
 }
 /** Single gallery navigation **/
 #sr-sing-nav-prev, #sr-sing-nav-next {
@@ -1294,7 +1308,7 @@ body:not(.theme-preset-active) footer#colophon {
 	@-moz-document url-prefix() {
 		.sr-auth-img-wrap img, .list-module img, #aindafome img  {
 			-webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-			clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);]
+			clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 			mask:none !important;
 		}
 	  }
