@@ -63,7 +63,6 @@
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
-<div id="searchbar"><a id="open-search" href="#top"><i class="fa fa-search"></i></a> <?php get_search_form(); ?> </div>
 <a id="back-to-top" href="#top"><i class="fa fa-chevron-up"></i></a>
 </body>
 </html>
