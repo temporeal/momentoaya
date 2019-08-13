@@ -38,7 +38,7 @@ body {
     margin: 0;
 	background-color: #f9bbb5;
 	background-image: url(img/shapes/aya-shape-04.svg), url(img/shapes/aya-shape-03.svg);
-	background-position: -100px 100px, 0 0;
+	background-position: bottom right, 0 0;
 	background-repeat:no-repeat;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -80,7 +80,7 @@ body.page-id-22 {
 	background: #9ad9e7;
 	
 }
-body.page-id-22 #page .site-content {
+body.page-id-22 #page .site-content, body.single-cases #page .site-content {
 	background-image: url(img/bg_quem_e_aya_content.png), url(img/shapes/quem-e-aya/aya-linha-01.svg), url(img/shapes/quem-e-aya/aya-linha-02.svg), url(img/shapes/quem-e-aya/aya-linha-03.svg);
 	background-color:  #9ad9e7;
 	background-position-x: center , left, left, right;
@@ -89,6 +89,9 @@ body.page-id-22 #page .site-content {
 	background-repeat: no-repeat;
 	padding-bottom: 5rem;
 
+}
+body.single-cases #page .site-content {
+	padding: 0 0 10rem 0 ;
 }
 /** Momentos Aya **/
 
@@ -392,7 +395,7 @@ body.page-id-88 section#primary .container-fluid:last-child {
 		opacity: 0;
 		right: 15px; }
 		.owl-carousel .owl-nav button.owl-next::before {
-		  content: "\eaf9"; font-weight: 900; }
+		  content: "\f054"; font-weight: 900; }
 	  
 	  .owl-carousel-alt .owl-nav {
 		position: absolute;
@@ -1146,6 +1149,9 @@ body.page-id-88 section#primary .container-fluid:last-child {
 		/** FIM MOMENTO AYA **/
 /* General rules 
 --------------------------------------------- */
+.sr-title {
+	margin:auto;
+}
 p a {
 	text-decoration: none;
 }
@@ -1257,6 +1263,9 @@ header#masthead {
 	background-color: #171a3e;
 	background-position-y: inherit;
 }
+.single-cases header#masthead {
+	background-color: #f16879;
+}
 .home header#masthead .navbar-brand {
 	overflow: visible;
 }
@@ -1304,53 +1313,13 @@ body:not(.theme-preset-active) #masthead .navbar-nav > li > a:not(.dropdown-togg
 	content: none;
 }
 
-	.sr-cat-icon {
-		background-image: url(img/sprites-cat.png);
-		background-repeat: no-repeat;
-		position: absolute;
-		left: 50%;
-		-webkit-transform: translateX(-50%);
-		transform: translateX(-50%);
-		height: 348px;
-		width: 348px;
-		bottom:-176px;
-		}
-	/* Those itens are responsive - check last section of this sheet **/
-		body.category-aqui-se-bebe .sr-cat-icon, body.aqui-se-bebe .sr-cat-icon  {
-			background-position-x: -21px;
-   			background-position-y: -61px;
-		}
-		body.category-brasilzao .sr-cat-icon, body.brasilzao .sr-cat-icon  {
-			background-position-x: -391px;
-			background-position-y: -61px;
-		}
-		body.category-challenge-accepted .sr-cat-icon, body.challenge-accepted .sr-cat-icon  {
-			background-position-x: -752px;
-			background-position-y: -61px;
-		}
-		body.category-fatness .sr-cat-icon, body.fatness .sr-cat-icon  {
-			background-position-x: 	-1141px;
-			background-position-y: -61px;
-		}
-		body.category-gringolandia .sr-cat-icon, body.gringolandia .sr-cat-icon {
-			background-position-x: -420px;
-			background-position-y: -502px
-		}
-		body.category-vem-que-vale .sr-cat-icon, body.vem-que-vale .sr-cat-icon {
-			background-position-x: -26px;
-			background-position-y: -502px
-		}
-		body.category-noi-tb-cozinha .sr-cat-icon, body.noi-tb-cozinha .sr-cat-icon {
-			background-position-x: -797px;
-			background-position-y: -502px
-		}
-
-
-
 /*** Single ****/
 /** This item is responsive - Check the rules at the end of the sheet***/
 h1.entry-title {
 	border-bottom: none
+}
+.entry-title {
+	color: #f16879;
 }
 body.home #content.site-content, body.page-id-88 #content.site-content {
 	padding-top:0;
@@ -1358,9 +1327,7 @@ body.home #content.site-content, body.page-id-88 #content.site-content {
 body.page-id-88 #content.site-content {
 	padding-bottom: 0;
 }
-body.single #content.site-content {
-	padding-top:14.125rem;
-}
+
 body.single header.entry-header h1.entry-title, body.page header.entry-header h2.entry-title {
 	padding: 0 15%;
 	font-size: 3em;
@@ -1778,84 +1745,6 @@ body:not(.theme-preset-active) footer#colophon {
 
 /******* Responsivity *************
 *************************************/
-@media only screen and (max-width:1200px) {
-	.sr-cat-icon {
-		height: 313px;
-		width: 313px;
-		bottom:-163px;
-		background-size: 1373px, 831px;
-	}
-	body.category-aqui-se-bebe .sr-cat-icon, body.aqui-se-bebe .sr-cat-icon  {
-		background-position-x: -21px;
-		   background-position-y: -61px;
-	}
-	body.category-brasilzao .sr-cat-icon, body.brasilzao .sr-cat-icon  {
-		background-position-x: -342px;
-		background-position-y: -61px;
-	}
-	body.category-challenge-accepted .sr-cat-icon, body.challenge-accepted .sr-cat-icon  {
-		background-position-x: -671px;
-		background-position-y: -61px;
-	}
-	body.category-fatness .sr-cat-icon, body.fatness .sr-cat-icon  {
-		background-position-x: 	-1020px;
-		background-position-y: -61px;
-	}
-	body.category-gringolandia .sr-cat-icon, body.gringolandia .sr-cat-icon {
-		background-position-x: -370px;
-		background-position-y: -452px
-	}
-	body.category-vem-que-vale .sr-cat-icon, body.vem-que-vale .sr-cat-icon {
-		background-position-x: -19px;
-		background-position-y: -452px
-	}
-	body.category-noi-tb-cozinha .sr-cat-icon, body.noi-tb-cozinha .sr-cat-icon {
-		background-position-x: -720px;
-		background-position-y: -452px
-	}
-	
-}
-@media only screen and (max-width:768px) {
-	
-	.sr-cat-icon {
-		height: 174px;
-		width: 174px;
-		bottom:-93px;
-		background-size: 743px, 462px;
-	}
-	body.category-aqui-se-bebe .sr-cat-icon, body.aqui-se-bebe .sr-cat-icon  {
-		background-position-x: -8px;
-		   background-position-y: -31px;
-	}
-	body.category-brasilzao .sr-cat-icon, body.brasilzao .sr-cat-icon  {
-		background-position-x: -182px;
-		background-position-y: -31px;
-	}
-	body.category-challenge-accepted .sr-cat-icon, body.challenge-accepted .sr-cat-icon  {
-		background-position-x: -371px;
-		background-position-y: -31px;
-	}
-	body.category-fatness .sr-cat-icon, body.fatness .sr-cat-icon  {
-		background-position-x: -546px;
-		background-position-y: -31px;
-	}
-	body.category-gringolandia .sr-cat-icon, body.gringolandia .sr-cat-icon {
-		background-position-x: -199px;
-		background-position-y: -247px
-	}
-	body.category-vem-que-vale .sr-cat-icon, body.vem-que-vale .sr-cat-icon {
-		background-position-x: -8px;
-		background-position-y: -247px
-	}
-	body.category-noi-tb-cozinha .sr-cat-icon, body.noi-tb-cozinha .sr-cat-icon {
-		background-position-x: -385px;
-		background-position-y: -247px
-	}
-	/** Single content responsive **/
-	body.single #content.site-content {
-		padding-top:10.125rem;
-	}
-}
 
 /** Bootstrap breakpoints ***/
 /* Extra small devices (portrait phones, less than 576px) */
@@ -1991,8 +1880,38 @@ body:not(.theme-preset-active) footer#colophon {
 		color: #fff;
 		text-align: center;
 	}
+	div.sr-title {
+		z-index:9;
+	}
+	.category-banner p, .page-banner p {
+		font-weight: 900;
+	}
+		.category-banner::after, .page-banner::after {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top:0;
+			left: 0;
+			z-index:0;
+			display: block;
+			content:'';
+			background: rgba(241,104,120,1);
+			background: -moz-linear-gradient(top, rgba(241,104,120,1) 1%, rgba(241,104,120,0.79) 48%, rgba(154,217,231,0.67) 76%, rgba(154,217,231,1) 100%);
+			background: -webkit-gradient(left top, left bottom, color-stop(1%, rgba(241,104,120,1)), color-stop(48%, rgba(241,104,120,0.79)), color-stop(76%, rgba(154,217,231,0.67)), color-stop(100%, rgba(154,217,231,1)));
+			background: -webkit-linear-gradient(top, rgba(241,104,120,1) 1%, rgba(241,104,120,0.79) 48%, rgba(154,217,231,0.67) 76%, rgba(154,217,231,1) 100%);
+			background: -o-linear-gradient(top, rgba(241,104,120,1) 1%, rgba(241,104,120,0.79) 48%, rgba(154,217,231,0.67) 76%, rgba(154,217,231,1) 100%);
+			background: -ms-linear-gradient(top, rgba(241,104,120,1) 1%, rgba(241,104,120,0.79) 48%, rgba(154,217,231,0.67) 76%, rgba(154,217,231,1) 100%);
+			background: linear-gradient(to bottom, rgba(241,104,120,1) 1%, rgba(241,104,120,0.79) 48%, rgba(154,217,231,0.67) 76%, rgba(154,217,231,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f16878', endColorstr='#9ad9e7', GradientType=0 );
+		}
 	.page-banner {
 		min-height: 320px;
+	}
+	.client-col {
+		background:#cdde62
+	}
+	.year-col {
+		background:#f16879
 	}
 	@supports (-webkit-overflow-scrolling: touch) {
 		/* CSS specific to iOS devices */ 
@@ -2002,36 +1921,20 @@ body:not(.theme-preset-active) footer#colophon {
 	  }
 		.category-banner h1, .category-banner h2, .page-banner h1, .page-banner h2 {
 			font-weight: bold;
-			font-size: 5em;
+			font-size: 3em;
 			color: #fff;
 			position: relative;
-			z-index: 99;
-			padding: 60px 20px 0 20px;
+			z-index: 99;			
 		}
-			.category-banner h1:after, .category-banner h2:after, .page-banner h1:after, .page-banner h2:after  {
-				position: absolute;
-				content: '';
-				height: 40px;
-				bottom: -6px;
-				left: 0;
-				z-index: -1;
-				width: 100%;
-				background: #f5be16;
-			}
-			.category-banner .archive-description, .page-banner .headline {
-				font-size: 2em;
-			}
-			.sr-title {
-				width: fit-content;
-				margin: auto;
-				display: table;
-			}
-	a#back-to-top, a#open-search {
+			
+		
+		
+	a#back-to-top {
 		width: 50px;
 		height: 50px;
 		padding-top:3px;
 		text-align: center;
-		background-color: #f5be16;
+		background-color: rgba(226, 88, 103, .9);
 		font-size: 2rem;
 		position: fixed;
 		color: #fff;
@@ -2042,30 +1945,11 @@ body:not(.theme-preset-active) footer#colophon {
 		-moz-border-radius: 100px;		
 		z-index: 103;
 	}
-	#searchbar {
-		position: fixed;
-		width: 50px;
-		height: 50px;
-		bottom: 85px;
-		right: 5px;
-		z-index: 103;
-	}
-	.opened {
-		width: inherit !important;	
-	}
-	a#open-search {
-		position: inherit;
-		bottom: inherit;
-		right: inherit;
-	}
-	#searchbar form {
-		display: none;
-		margin-right: 55px;
-		margin-top: 5px;
-	}
+
+
 	 a#back-to-top:hover {
 			background-color: #fff;
-			color: #f5be16;
+			color: rgba(226, 88, 103, 1);
 			outline-offset: 3rem;
 	 }
 /* Small devices (landscape phones, 576px and up) */
@@ -2426,41 +2310,9 @@ body:not(.theme-preset-active) footer#colophon {
 		min-height: 390px;
 	}
 	
-	#cat-list a, #cat-list .sr-marker {
-		background-size: 1160px 1026px;
-		width:266px;
-		height: 260px;
-	}
-	#cat-list .sr-marker {
-		background-position: -15px -709px;
-	}
-	#cat-list a.load-challenge {
-		background-position: -577px -49px;
-		left: 0;
-	}
-	#cat-list a.load-gringolandia {
-		background-position: -310px -379px;
-		left:13%;
-	}
-	#cat-list a.load-brasilzao {
-		background-position: -297px -49px;
-		left: 27%;
-	}
-	#cat-list a.load-aqui {
-		background-position: -15px -49px;
-		left:39.7%;
-	}
-	#cat-list a.load-noi {
-		background-position: -599px -379px;
-   		left: 52%;
-	}
-	#cat-list a.load-fatness {
-		background-position: -858px -49px;
-   		 left: 65%;
-	}
-	#cat-list a.load-vem {
-		background-position: -15px -379px;
-		left: 77.2%
+	.category-banner, .page-banner {
+		min-height: 380px;
+		background-size: cover;
 	}
 }
 	/** Firefox replace masks with clippath **/

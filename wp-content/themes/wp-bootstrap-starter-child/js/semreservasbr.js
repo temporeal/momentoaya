@@ -77,6 +77,41 @@ jQuery(document).ready(function($){
         $("html, body").animate({ scrollTop: 0 }, "slow");
         return false;
       });
+    
+      /**Do we have a Gallery? If so, magnify it and convert it to owl carousel*/
+      var gallery = $('.gallery');
+
+      if(gallery.length) {
+        gallery.addClass('owl-carousel');
+        gallery.find('br').remove();
+        $(this).each(function( index ) {            
+            $('.gallery-item', this).magnificPopup({
+                delegate: 'a', // child items selector, by clicking on it popup will open
+                type: 'image',
+                gallery:{
+                    enabled:true
+                }
+                // other options
+            });
+          });
+
+          gallery.owlCarousel({
+            loop:true,
+            margin:10,
+            nav:true,
+            dots:false,
+            autoplay:true,            
+            responsive: {
+                0: { items: 1 },
+                992: { items: 2 },
+                1200: { items: 2 },
+                1600: { items: 2}
+              }
+        })    
+          
+        }
+        
+
 
     /** Quem é aya */
     if(jQuery('body').hasClass('page-template-quemeaya')) {
@@ -136,7 +171,7 @@ jQuery(document).ready(function($){
               }
         })    
      
-        jQuery('a.image').magnificPopup({
+        jQuery('a.image, ').magnificPopup({
             image: {
                 markup: '<div class="mfp-figure">'+
                           '<div class="mfp-close"></div>'+
@@ -166,5 +201,7 @@ jQuery(document).ready(function($){
         });
 
       } /** FIM MOMENTOS AYA */
+
+    
      
 });

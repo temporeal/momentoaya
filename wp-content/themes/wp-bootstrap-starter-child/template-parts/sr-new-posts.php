@@ -2,8 +2,8 @@
 	<div class="row">
         <div class="col-12 col-md-10 col-lg-10 col-xl-8 mx-auto mb-4 pt-5 sr-sec-title">
 			<hgroup>
-				<h4> Ainda com fome?</h4>
-				<h6>Confere ai outros lugares</h6>
+				<h4> +</h4>
+				<h6>Cases de sucesso</h6>
             </hgroup>
         </div>
 	</div>

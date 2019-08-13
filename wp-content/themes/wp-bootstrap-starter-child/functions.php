@@ -22,37 +22,40 @@ Function semreservas_child_theme_enqueue_scripts() {
     // Now go...
  	
 
+    wp_register_script('cycle',  get_stylesheet_directory_uri() . '/js/jquery_cycle2.js', 'jquery' , true);
+    wp_register_script('cycle_swipe',  get_stylesheet_directory_uri() . '/js/cycle2_swipe.js', Array('jquery', 'cycle'),'1', true);
     wp_register_script('snap', get_stylesheet_directory_uri() . '/js/snap.svg-min.js', '', true);
     wp_register_script('waypoints', get_stylesheet_directory_uri() . '/js/jquery.waypoints.min.js', '', true);
     wp_register_script('owlmin',  get_stylesheet_directory_uri() . '/js/owl.carousel.min.js', Array('jquery'),'2', true);
-    wp_register_script('semreservas', get_stylesheet_directory_uri() . '/js/semreservasbr.js' ,Array('jquery', 'snap', 'waypoints', 'owlmin'),'2', true);
+    wp_register_script('magmin',  get_stylesheet_directory_uri() . '/js/magnific-popup.min.js', Array('jquery'),'2', true);
+    
+    wp_register_script('home-js',  get_stylesheet_directory_uri() . '/js/home.js', Array('jquery', 'cycle'),'1.123', true);
+    wp_register_script('singlejs',  get_stylesheet_directory_uri() . '/js/single.js', Array('jquery', 'magmin'),'1', true);
+    wp_register_script('semreservas', get_stylesheet_directory_uri() . '/js/semreservasbr.js' ,Array('jquery', 'snap', 'waypoints', 'owlmin', 'magmin'),'2', true);
+    
     wp_enqueue_script('snap');
     wp_enqueue_script('waypoints');
     wp_enqueue_script('semreservas');
 
     if(is_single() || is_front_page() ) {
-        wp_register_script('cycle',  get_stylesheet_directory_uri() . '/js/jquery_cycle2.js', 'jquery' , true);
-        wp_enqueue_script('cycle');
-        wp_register_script('cycle_swipe',  get_stylesheet_directory_uri() . '/js/cycle2_swipe.js', Array('jquery', 'cycle'),'1', true);
+      
+        wp_enqueue_script('cycle');        
         wp_enqueue_script('cycle_swipe');
     }
        
     if(is_single() ) {
-        wp_register_script('cycle_carousel',  get_stylesheet_directory_uri() . '/js/jquery_cycle2_carousel.js', Array('jquery', 'cycle'),'1', true);
-        wp_enqueue_script('cycle_carousel');
-        wp_register_script('cycle_center',  get_stylesheet_directory_uri() . '/js/jquery_cycle2_center.js', Array('jquery', 'cycle'),'1', true);
-        wp_enqueue_script('cycle_center');   
-        wp_register_script('singlejs',  get_stylesheet_directory_uri() . '/js/single.js', Array('jquery', 'cycle', 'cycle_carousel', 'cycle_center'),'1', true);
-        wp_enqueue_script('singlejs');
+      wp_enqueue_style( 'owlmincss', get_stylesheet_directory_uri() . '/css/owl.carousel.min.css' ); 
+      wp_enqueue_style('magnific', get_stylesheet_directory_uri() . '/css/magnific-popup.css');
+      wp_enqueue_script('owlmin'); 
+        wp_enqueue_script('magmin');       
+     
     }
-    if(is_front_page()) {         
-          wp_register_script('home-js',  get_stylesheet_directory_uri() . '/js/home.js', Array('jquery', 'cycle'),'1.123', true);
+    if(is_front_page()) {                
           wp_enqueue_script('home-js');
     }
     if(is_page('88')) {
       wp_enqueue_style( 'owlmincss', get_stylesheet_directory_uri() . '/css/owl.carousel.min.css' ); 
       wp_enqueue_style('magnific', get_stylesheet_directory_uri() . '/css/magnific-popup.css');
-      wp_register_script('magmin',  get_stylesheet_directory_uri() . '/js/magnific-popup.min.js', Array('jquery'),'2', true);
       wp_enqueue_script('magmin'); 
       wp_enqueue_script('owlmin'); 
     }
@@ -475,3 +478,6 @@ if ( ! function_exists('register_cases') ) {
   add_action( 'init', 'register_cases', 0 );
   
   }
+
+  /** Since we are converting galleries to carousel, no need for inline css */
+  add_filter( 'use_default_gallery_style', '__return_false' );
