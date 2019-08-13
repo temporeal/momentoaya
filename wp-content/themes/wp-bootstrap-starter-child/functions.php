@@ -24,7 +24,7 @@ Function semreservas_child_theme_enqueue_scripts() {
 
     wp_register_script('snap', get_stylesheet_directory_uri() . '/js/snap.svg-min.js', '', true);
     wp_register_script('waypoints', get_stylesheet_directory_uri() . '/js/jquery.waypoints.min.js', '', true);
-    
+    wp_register_script('owlmin',  get_stylesheet_directory_uri() . '/js/owl.carousel.min.js', Array('jquery'),'2', true);
     wp_register_script('semreservas', get_stylesheet_directory_uri() . '/js/semreservasbr.js' ,Array('jquery', 'snap', 'waypoints', 'owlmin'),'2', true);
     wp_enqueue_script('snap');
     wp_enqueue_script('waypoints');
@@ -54,7 +54,6 @@ Function semreservas_child_theme_enqueue_scripts() {
       wp_enqueue_style('magnific', get_stylesheet_directory_uri() . '/css/magnific-popup.css');
       wp_register_script('magmin',  get_stylesheet_directory_uri() . '/js/magnific-popup.min.js', Array('jquery'),'2', true);
       wp_enqueue_script('magmin'); 
-      wp_register_script('owlmin',  get_stylesheet_directory_uri() . '/js/owl.carousel.min.js', Array('jquery'),'2', true);
       wp_enqueue_script('owlmin'); 
     }
     
