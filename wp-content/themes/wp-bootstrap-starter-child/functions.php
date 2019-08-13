@@ -20,17 +20,24 @@ Function semreservas_child_theme_enqueue_scripts() {
     wp_deregister_style('wp-bootstrap-pro-fontawesome-cdn');
     wp_enqueue_style( 'sr-fontawesome-cdn', 'https://use.fontawesome.com/releases/v5.7.0/css/all.css' );       
     // Now go...
- 	  wp_register_script('semreservas', get_stylesheet_directory_uri() . '/js/semreservasbr.js' ,'jquery','2', true);
+ 	
+
+    wp_register_script('snap', get_stylesheet_directory_uri() . '/js/snap.svg-min.js', '', true);
+    wp_register_script('waypoints', get_stylesheet_directory_uri() . '/js/jquery.waypoints.min.js', '', true);
+    
+    wp_register_script('semreservas', get_stylesheet_directory_uri() . '/js/semreservasbr.js' ,Array('jquery', 'snap', 'waypoints', 'owlmin'),'2', true);
+    wp_enqueue_script('snap');
+    wp_enqueue_script('waypoints');
     wp_enqueue_script('semreservas');
 
-    if(is_single() || is_front_page()) {
+    if(is_single() || is_front_page() ) {
         wp_register_script('cycle',  get_stylesheet_directory_uri() . '/js/jquery_cycle2.js', 'jquery' , true);
         wp_enqueue_script('cycle');
         wp_register_script('cycle_swipe',  get_stylesheet_directory_uri() . '/js/cycle2_swipe.js', Array('jquery', 'cycle'),'1', true);
         wp_enqueue_script('cycle_swipe');
     }
        
-    if(is_single()) {
+    if(is_single() ) {
         wp_register_script('cycle_carousel',  get_stylesheet_directory_uri() . '/js/jquery_cycle2_carousel.js', Array('jquery', 'cycle'),'1', true);
         wp_enqueue_script('cycle_carousel');
         wp_register_script('cycle_center',  get_stylesheet_directory_uri() . '/js/jquery_cycle2_center.js', Array('jquery', 'cycle'),'1', true);
@@ -38,12 +45,17 @@ Function semreservas_child_theme_enqueue_scripts() {
         wp_register_script('singlejs',  get_stylesheet_directory_uri() . '/js/single.js', Array('jquery', 'cycle', 'cycle_carousel', 'cycle_center'),'1', true);
         wp_enqueue_script('singlejs');
     }
-    if(is_front_page()) {
-          /**See AJAX request - line 104 */
-          wp_register_script( 'secure-ajax-access', esc_url( add_query_arg( array( 'js_global' => 1 ), site_url() ) ) );
-          wp_enqueue_script( 'secure-ajax-access' );
+    if(is_front_page()) {         
           wp_register_script('home-js',  get_stylesheet_directory_uri() . '/js/home.js', Array('jquery', 'cycle'),'1.123', true);
           wp_enqueue_script('home-js');
+    }
+    if(is_page('88')) {
+      wp_enqueue_style( 'owlmincss', get_stylesheet_directory_uri() . '/css/owl.carousel.min.css' ); 
+      wp_enqueue_style('magnific', get_stylesheet_directory_uri() . '/css/magnific-popup.css');
+      wp_register_script('magmin',  get_stylesheet_directory_uri() . '/js/magnific-popup.min.js', Array('jquery'),'2', true);
+      wp_enqueue_script('magmin'); 
+      wp_register_script('owlmin',  get_stylesheet_directory_uri() . '/js/owl.carousel.min.js', Array('jquery'),'2', true);
+      wp_enqueue_script('owlmin'); 
     }
     
 }
@@ -61,7 +73,7 @@ function semreservas_theme_setup() {
 	add_image_size( 'sr-home-banner', 1920, 1440); // Used as background at the home page
     add_image_size( 'sr-grid-thumb', 334, 339, array( 'center', 'center' ) ); 
 	add_image_size( 'sr-gallery-thumb', 150, 120, array( 'center', 'center' ) ); 
-	add_image_size( 'sr-autores-image', 500, 376, array('center', 'center') );
+	add_image_size( 'sr-autores-image', 600, 600, array('center', 'center') );
 	add_image_size('sr-logotipos-image', 210, 210);
 }
 
@@ -112,69 +124,6 @@ function sr_excerpt_more( $more) {
 }
 add_filter( 'excerpt_more', 'sr_excerpt_more', 999);
 
-/*** AJAX requests for home page categories modules */
-//Joga o nonce e a url para as requisições para dentro do Javascript criado no enquee inicial
-add_action( 'template_redirect', 'javascript_variaveis' );
-function javascript_variaveis() {
-  if ( !isset( $_GET[ 'js_global' ] ) ) return;
-
-  $nonce = wp_create_nonce('sr_loadposts_nonce');
-
-  $variaveis_javascript = array(
-    'sr_loadposts_nonce' => $nonce, //Esta função cria um nonce para nossa requisição para buscar mais notícias, por exemplo.
-    'xhr_url'             => admin_url('admin-ajax.php') // Forma para pegar a url para as consultas dinamicamente.
-  );
-  $new_array = array();
-  foreach( $variaveis_javascript as $var => $value ) $new_array[] = esc_js( $var ) . " : '" . esc_js( $value ) . "'";
-  header("Content-type: application/x-javascript");
-  printf('var %s = {%s};', 'js_global', implode( ',', $new_array ) );
-  exit;
-}
-
-add_action('wp_ajax_nopriv_load_posts', 'sr_load_posts');
-add_action('wp_ajax_load_posts', 'sr_load_posts');
-
-function sr_load_posts() {
-  if( ! wp_verify_nonce( $_POST['sr_loadposts_nonce'], 'sr_loadposts_nonce' ) ) {
-    echo '401'; // Caso não seja verificado o nonce enviado, a requisição vai retornar 401
-    die();
-  }
-  //Busca os dados que queremos
-  $cat_id = $_POST['cat'];
-  $args = array(
-    'post_type' => 'post',
-    'category__in' => $cat_id,
-    'post_per_page' => 3,
-    'post_status' => 'publish',
-    'no_found_rows' => true
-  );
-  $wp_query = new WP_Query( $args );
-
-  //Caso tenha os dados, retorna-os / Caso não tenha retorna 402 para tratarmos no frontend
-  $counter = 0;
-  if( $wp_query->have_posts() ) {
-    $category_link = get_category_link( $cat );
-    $posts = $wp_query->posts;   
-    foreach($posts as $post){
-        $post_id = $post->ID;
-        $post_content = $post->post_content;
-        $counter++;
-        if($counter == 1) {
-            echo('<div id="row-latest" class="row">');
-        }
-        set_query_var( 'post_id', absint( $post_id ) );
-        set_query_var( 'post_content', $post_content );
-        set_query_var( 'post_count', absint( $counter ) );
-        set_query_var( 'cat_id', absint( $cat_id ) );
-        get_template_part('template-parts/cat-home-display');
-        wp_reset_postdata();
-    }
-  } else {
-    echo 402;
-  }
- 
-  exit; 
-}
 function sr_header_metadata() {
 ?>
 
@@ -209,7 +158,7 @@ add_action( 'pre_get_posts', 'sr_single_custom', 1 );
 
 
 // Sharebar
-function bp_show_sharebar(){
+function trcom_show_sharebar(){
 	/** Is this a course page? (Child of any of the 3 top courses pages) */
 	if(is_single()) { 
 		?>
@@ -222,4 +171,246 @@ function bp_show_sharebar(){
 	
 	}
 }
-add_action( 'wp_footer', 'bp_show_sharebar' );
+add_action( 'wp_footer', 'trcom_show_sharebar' );
+
+//Opções do tema - Momento Aya  https://digwp.com/2009/09/global-custom-fields-take-two/
+add_action('admin_menu', 'trcom_optionspage');
+
+function trcom_optionspage() {
+	add_options_page('Global Custom Fields', 'Opções do Site', '7', 'functions', 'editglobalcustomfields');
+}
+
+function editglobalcustomfields() {
+  // Logo
+  $image_attributes = wp_get_attachment_image_src( $attachment_id = 13 );
+  ?>
+	<div class='wrap'>
+  <h1> Opções do site </h1>
+    <p>Inclua os dados que são utilizados em diversos lugares do site. </p>
+  <hr/>
+  <?php if ( $image_attributes ) : ?>
+    <img src="<?php echo $image_attributes[0]; ?>" width="<?php echo $image_attributes[1]; ?>" height="<?php echo $image_attributes[2]; ?>" />
+  <?php endif; ?>
+
+  <hr/>
+	<form method="post" action="options.php">
+	<?php wp_nonce_field('update-options') ?>
+    <h3>Dados globais</h3>
+   
+	<p><strong>Endereço:</strong><br />
+	<input type="text" name="endereco" size="45" value="<?php echo get_option('endereco'); ?>" /></p>
+	
+	<p><strong>Telefone fixo</strong><br />
+    <input type="text" name="telefone" size="45" value="<?php echo get_option('telefone'); ?>" /></p>
+    
+    <p><strong>Whatsapp</strong><br />
+    <input type="text" name="whatsapp" size="45" value="<?php echo get_option('whatsapp'); ?>" /></p>
+    
+	<p><strong>E-mail:</strong><br />
+	<input type="text" name="emaildecontato" size="45" value="<?php echo get_option('emaildecontato'); ?>" /></p>
+
+	<p><strong>Facebook:</strong><br />
+    <input type="text" name="facebookurl" size="45" value="<?php echo get_option('facebookurl'); ?>" /></p>
+    
+    <p><strong>Instagram:</strong><br />
+    <input type="text" name="instagramurl" size="45" value="<?php echo get_option('instagramurl'); ?>" /></p>
+	<!-- <h3>Layout</h3>
+    <label for="home-banner-enable">Na página inicial, exibir</label>
+            <select name="home-banner-enable">
+                <?php /***
+                    $option_values = array(
+                        'banners'        => 'os banners cadastrados',
+                        'cursos'         => 'os cursos publicados e marcados para aparecer na home',
+                        'mixed-cursos'   => 'inclua os 3 cursos e os 2 banners mais recentes (Cursos primeiro)',
+                        'mixed-banners'  => 'inclua os 3 banners e os 2 cursos mais recentes (Banners primeiro)'
+                    );
+
+                    foreach($option_values as $value => $label) 
+                    {
+                        if($value == get_option('home-banner-enable'))
+                        {
+                            ?>
+                                <option value="<?php echo $value;?>" selected><?php echo $label; ?></option>
+                            <?php    
+                        }
+                        else
+                        {
+                            ?>
+                                 <option value="<?php echo $value;?>"><?php echo $label; ?></option>
+                            <?php
+                        }
+                    }
+               */  ?>
+            </select>
+            <br> -->
+
+
+	<p><input type="submit" name="Submit" value="Atualizar" /></p>
+
+	<input type="hidden" name="action" value="update" />
+	<input type="hidden" name="page_options" value="endereco, whatsapp, telefone,emaildecontato,facebookurl, instagramurl" />
+
+	</form>
+	</div>
+	<?php
+}
+
+// Destaques
+if ( ! function_exists('destaques_home') ) {
+
+  // Register Custom Post Type
+  function destaques_home() {
+  
+    $labels = array(
+      'name'                  => _x( 'destaques', 'Post Type General Name', 'momentoaya' ),
+      'singular_name'         => _x( 'destaque', 'Post Type Singular Name', 'momentoaya' ),
+      'menu_name'             => __( 'Destaques', 'momentoaya' ),
+      'name_admin_bar'        => __( 'Destaques', 'momentoaya' ),
+      'archives'              => __( 'Item Archives', 'momentoaya' ),
+      'attributes'            => __( 'Item Attributes', 'momentoaya' ),
+      'parent_item_colon'     => __( 'Parent Item:', 'momentoaya' ),
+      'all_items'             => __( 'All Items', 'momentoaya' ),
+      'add_new_item'          => __( 'Add New Item', 'momentoaya' ),
+      'add_new'               => __( 'Add New', 'momentoaya' ),
+      'new_item'              => __( 'New Item', 'momentoaya' ),
+      'edit_item'             => __( 'Edit Item', 'momentoaya' ),
+      'update_item'           => __( 'Update Item', 'momentoaya' ),
+      'view_item'             => __( 'View Item', 'momentoaya' ),
+      'view_items'            => __( 'View Items', 'momentoaya' ),
+      'search_items'          => __( 'Search Item', 'momentoaya' ),
+      'not_found'             => __( 'Not found', 'momentoaya' ),
+      'not_found_in_trash'    => __( 'Not found in Trash', 'momentoaya' ),
+      'featured_image'        => __( 'Featured Image', 'momentoaya' ),
+      'set_featured_image'    => __( 'Set featured image', 'momentoaya' ),
+      'remove_featured_image' => __( 'Remove featured image', 'momentoaya' ),
+      'use_featured_image'    => __( 'Escolher imagem', 'momentoaya' ),
+      'insert_into_item'      => __( 'Insert into item', 'momentoaya' ),
+      'uploaded_to_this_item' => __( 'Uploaded to this item', 'momentoaya' ),
+      'items_list'            => __( 'Items list', 'momentoaya' ),
+      'items_list_navigation' => __( 'Items list navigation', 'momentoaya' ),
+      'filter_items_list'     => __( 'Filter items list', 'momentoaya' ),
+    );
+    $args = array(
+      'label'                 => __( 'destaque', 'momentoaya' ),
+      'description'           => __( 'Destaques da página inicial', 'momentoaya' ),
+      'labels'                => $labels,
+      'supports'              => array( 'title', 'editor', 'thumbnail' ),
+      'hierarchical'          => false,
+      'public'                => true,
+      'show_ui'               => true,
+      'show_in_menu'          => true,
+      'menu_position'         => 5,
+      'menu_icon'             => 'dashicons-star-filled',
+      'show_in_admin_bar'     => true,
+      'show_in_nav_menus'     => false,
+      'can_export'            => true,
+      'has_archive'           => false,
+      'exclude_from_search'   => true,
+      'publicly_queryable'    => true,
+      'capability_type'       => 'page',
+    );
+    register_post_type( 'destaque', $args );
+  
+  }
+  add_action( 'init', 'destaques_home', 0 );
+
+  if ( ! function_exists('register_momentos') ) {
+
+    // Register Custom Post Type
+    function register_momentos() {
+    
+      $labels = array(
+        'name'                  => _x( 'momentos', 'Post Type General Name', 'momentoaya' ),
+        'singular_name'         => _x( 'momento', 'Post Type Singular Name', 'momentoaya' ),
+        'menu_name'             => __( 'Momentos', 'momentoaya' ),
+        'name_admin_bar'        => __( 'Momento', 'momentoaya' ),
+        'archives'              => __( 'Arquivo de momentos', 'momentoaya' ),
+        'attributes'            => __( 'Atributos do momento', 'momentoaya' ),
+        'parent_item_colon'     => __( 'Item pai', 'momentoaya' ),
+        'all_items'             => __( 'Todos os momentos', 'momentoaya' ),
+        'add_new_item'          => __( 'Adicionar novo momentos', 'momentoaya' ),
+        'add_new'               => __( 'Adiconar novo', 'momentoaya' ),
+        'new_item'              => __( 'Novo momento', 'momentoaya' ),
+        'edit_item'             => __( 'Editar momeneto', 'momentoaya' ),
+        'update_item'           => __( 'Atualizar momento', 'momentoaya' ),
+        'view_item'             => __( 'Ver item', 'momentoaya' ),
+        'view_items'            => __( 'Ver itens', 'momentoaya' ),
+        'search_items'          => __( 'Buscar', 'momentoaya' ),
+        'not_found'             => __( 'Não encontrado', 'momentoaya' ),
+        'not_found_in_trash'    => __( 'Não encontrado na lixeira', 'momentoaya' ),
+        'featured_image'        => __( 'Imagem do momento', 'momentoaya' ),
+        'set_featured_image'    => __( 'Definir imagem', 'momentoaya' ),
+        'remove_featured_image' => __( 'Remover imagem', 'momentoaya' ),
+        'use_featured_image'    => __( 'Usar como imagem principal', 'momentoaya' ),
+        'insert_into_item'      => __( 'Inserir no momento', 'momentoaya' ),
+        'uploaded_to_this_item' => __( 'Adicionado a este item', 'momentoaya' ),
+        'items_list'            => __( 'Lista de momenetos', 'momentoaya' ),
+        'items_list_navigation' => __( 'Lista de navegação', 'momentoaya' ),
+        'filter_items_list'     => __( 'Filtrar momentos', 'momentoaya' ),
+      );
+      $args = array(
+        'label'                 => __( 'momento', 'momentoaya' ),
+        'description'           => __( 'Momentos Aya - Ativações e Eventos', 'momentoaya' ),
+        'labels'                => $labels,
+        'supports'              => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
+        'taxonomies'            => array( 'tipo de momento' ),
+        'hierarchical'          => false,
+        'public'                => true,
+        'show_ui'               => true,
+        'show_in_menu'          => true,
+        'menu_position'         => 5,
+        'menu_icon'             => 'dashicons-yes',
+        'show_in_admin_bar'     => true,
+        'show_in_nav_menus'     => false,
+        'can_export'            => true,
+        'has_archive'           => true,
+        'exclude_from_search'   => false,
+        'publicly_queryable'    => true,
+        'capability_type'       => 'page',
+      );
+      register_post_type( 'momentos', $args );
+    
+    }
+    add_action( 'init', 'register_momentos', 0 );
+    
+    }
+    // Register Custom Taxonomy
+function custom_taxonomy() {
+
+	$labels = array(
+		'name'                       => _x( 'Tipos de momentos', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Tipo de momento', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Tipo de momento', 'text_domain' ),
+		'all_items'                  => __( 'Todos', 'text_domain' ),
+		'parent_item'                => __( 'Item pai', 'text_domain' ),
+		'parent_item_colon'          => __( 'Item pai', 'text_domain' ),
+		'new_item_name'              => __( 'Nome do novo tipo de momento', 'text_domain' ),
+		'add_new_item'               => __( 'Adicionar novo tipo de momento', 'text_domain' ),
+		'edit_item'                  => __( 'Editar item', 'text_domain' ),
+		'update_item'                => __( 'Atualizar item', 'text_domain' ),
+		'view_item'                  => __( 'Ver item', 'text_domain' ),
+		'separate_items_with_commas' => __( 'Separe os itens com vírgulas', 'text_domain' ),
+		'add_or_remove_items'        => __( 'Adicione ou remova tipos de momentos', 'text_domain' ),
+		'choose_from_most_used'      => __( 'Escolher entre os mais usados', 'text_domain' ),
+		'popular_items'              => __( 'Tipos de momento populares', 'text_domain' ),
+		'search_items'               => __( 'Buscar por tipo de momento', 'text_domain' ),
+		'not_found'                  => __( 'Não encontrado', 'text_domain' ),
+		'no_terms'                   => __( 'Não há items', 'text_domain' ),
+		'items_list'                 => __( 'Lista de tipo de momentos', 'text_domain' ),
+		'items_list_navigation'      => __( 'Items list navigation', 'text_domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => false,
+		'show_tagcloud'              => false,
+	);
+	register_taxonomy( 'tipodemomento', array( 'momentos' ), $args );
+
+}
+add_action( 'init', 'custom_taxonomy', 0 );
+  
+  }

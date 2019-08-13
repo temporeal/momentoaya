@@ -30,7 +30,7 @@ get_header();
 
 		</main><!-- #main -->
 	</section><!-- #primary -->
-	<section id="secondary" class="content-area col-sm-12 col-md-12 col-lg-10 mx-auto sr-bottom-line">
+	<section id="secondary" class="content-area col-sm-12 col-md-12 col-lg-10 mx-auto ">
 		<?php
 		 get_template_part('template-parts/sr-new-posts', 'New Posts');
 		 ?>

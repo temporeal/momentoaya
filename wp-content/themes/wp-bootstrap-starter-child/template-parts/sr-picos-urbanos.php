@@ -20,7 +20,7 @@
 						</hgroup>
 					</div>
 				</div>
-				<div class="row  sr-bottom-line">
+				<div class="row  ">
 				<?php if($logo): 
 					$logoimage = wp_get_attachment_image_src($logo,'sr-logotipos-image');	
 					else:

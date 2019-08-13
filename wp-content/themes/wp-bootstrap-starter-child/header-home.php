@@ -28,10 +28,17 @@
         <div class="container">
         <nav class="navbar navbar-expand-xl navbar-light">
                 <div class="navbar-brand">
-                    <?php if ( get_theme_mod( 'wp_bootstrap_starter_logo' ) ): ?>
-                        <a href="<?php echo esc_url( home_url( '/' )); ?>">
+                    <?php if ( get_theme_mod( 'wp_bootstrap_starter_logo' ) ): 
+                        $image_attributes = wp_get_attachment_image_src( $attachment_id = 38, 'full' );
+                    ?>
+                    <a href="<?php echo esc_url( home_url( '/' )); ?>">
+                    <?php                         
+                        if ( $image_attributes ) : ?>
+                            <img alt="<?php echo esc_attr( get_bloginfo( 'name' ))?>" src="<?php echo $image_attributes[0]; ?>" width="<?php echo $image_attributes[1]; ?>" height="<?php echo $image_attributes[2]; ?>" />
+                        <?php else:?>                    
                             <img src="<?php echo esc_attr(get_theme_mod( 'wp_bootstrap_starter_logo' )); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-                        </a>
+                        <?php endif; ?>   
+                    </a>
                     <?php else : ?>
                         <a class="site-title" href="<?php echo esc_url( home_url( '/' )); ?>"><?php esc_url(bloginfo('name')); ?></a>
                     <?php endif; ?>
@@ -61,6 +68,6 @@
 
     <?php get_template_part('template-parts/home-banner', 'Banner da home');  ?>
 	<div id="content" class="site-content">
-		<div class="container">
+		<div class="container-fluid p-0">
 			<div class="row">
                 <?php endif; ?>

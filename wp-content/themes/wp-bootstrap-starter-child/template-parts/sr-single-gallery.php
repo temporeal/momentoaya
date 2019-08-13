@@ -13,7 +13,7 @@
                             <a href="#" class="cycle-prev"><i class="fas fa-chevron-left"></i></a>  
                         <?php endif; ?>
                     </div>
-                    <div class="col-12 col-sm-10 <?php if($howmanyphotos < 4) {echo('sr-bottom-line');} ?>">
+                    <div class="col-12 col-sm-10 <?php if($howmanyphotos < 4) {echo('');} ?>">
                         <div id="slideshow-1">
                             <div id="cycle-1" class="col-12 cycle-slideshow"
                                 data-cycle-slides="> div"
@@ -60,7 +60,7 @@
                     <div class='row'>
                             <div class="col-1">
                             </div>
-                            <div id="slideshow-2" class="col-10 sr-bottom-line">
+                            <div id="slideshow-2" class="col-10 ">
                                 <div id="cycle-2"  class=" cycle-slideshow"
                                     data-cycle-slides="> div"
                                     data-cycle-timeout="0"

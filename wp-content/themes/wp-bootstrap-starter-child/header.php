@@ -61,15 +61,14 @@
     <?php
         if(is_category() || is_single()){
             get_template_part('template-parts/cat-banner', 'category-banner');
-        } elseif(is_page() && !is_front_page() && !is_page('110') /**contact page */) {
-            get_template_part('template-parts/page-banner', 'page-banner');
-        };
-        if(is_page('110')){
-            $nopadclass = 'pt-0';
-        }
+        }    
 
     ?>
-	<div id="content" class="site-content <?php if($nopadclass){echo $nopadclass;} ?>">
-		<div class="container">
+    <div id="content" class="site-content <?php if($nopadclass){echo $nopadclass;} ?>">
+    <?php if(is_page('88')):?>
+		<div class="container-fluid">
+    <?php else:?>
+     <div class="container">
+    <?php endif;?>
 			<div class="row">
                 <?php endif; ?>

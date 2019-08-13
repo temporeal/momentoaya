@@ -1,4 +1,4 @@
-<?php /*************** Sem Reservas - Category banners for category page and single
+<?php /*************** TRCOM - Category banners for category page and single
 */
     // Do we have a subtitle?
     $subtitle = get_field('headline');	

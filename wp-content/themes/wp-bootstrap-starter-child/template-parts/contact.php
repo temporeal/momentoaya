@@ -25,7 +25,7 @@ $htags = ['h4', 'h6'];
             </div>
         </div>
         
-        <div class="pb-5 sr-bottom-line">
+        <div class="pb-5 ">
             <div class='row'>
                 <div class="col-md-5 ">
                     <?php

@@ -1,6 +1,7 @@
 <?php /*************** Sem Reservas -Home page banner
 */
  $args = array(
+     'post_type' => 'destaque',
     'numberposts' => 3, 
     'post_status' => 'publish',   
     );
@@ -10,67 +11,45 @@
 foreach ($srrecent as $uids) {
     $theUids[] = $uids['ID'];
 }
-foreach ($theUids as $key => $uid):
-    $thebgimage = get_the_post_thumbnail_url($uid, 'sr-home-banner');
 ?>  
-    <style type="text/css">
-        .sr-<?php echo $uid;?> { 
-            background-image:url( <?php echo $thebgimage; ?>);
-        }
-    </style>
-<?php endforeach; ?>
+
 <div class='sr-home-cycle cycle-slideshow'
     data-cycle-timeout="7000"
     data-cycle-slides="> div"
-    data-cycle-prev=".sr-cycle-prev"
-    data-cycle-next=".sr-cycle-next"
     data-cycle-swipe=true
     data-cycle-swipe-fx=scrollHorz
     >
-    <?php foreach($srrecent as $recent):
+  
+    <?php
+     $i = 0;
+     foreach($srrecent as $recent):
+            $i++;
             $theid = $recent['ID'];
             $title = $recent["post_title"];
-            $sectitle = get_field( "complemento", $theid );
-            if($sectitle) {
-                $titlelen = strlen($title . $sectitle);
-            } else {
-                $titlelen = strlen($title);
-                }
-            $estabelecimento = get_field('estabelecimento', $theid);
             $thelink = get_the_permalink($theid);
             setup_postdata( $theid);
-            $theexcerpt =  get_the_excerpt($theid);
+            $thecontent =  get_the_content($theid);
     ?>
-        <div class="home-banner w-100 sr-<?php echo $theid;?>" role="banner" >            
-                <div class="container d-flex justify-content-center">
+        <div class="home-banner w-100 sr-homemask-<?php echo $i?>" role="banner" >            
+                <div class="container justify-content-center">
                     <div class="row mx-auto my-auto">
                            
-                                <div class='col-12 col-lg-7  mx-auto text-center '>
+                                <div class='col-12 img-wrp  mx-auto text-center '>
                                     <a href="<?php echo $thelink; ?>">
-                                        <?php if ( $titlelen > 55) { // big post title
-                                            echo('<h2 class="  mb-0 small-title"><span>'.$title.'&nbsp;'.$sectitle.'</span></h2>');
-                                        } else if($titlelen < 55 && $sectitle) { //Medium post  
-                                            echo('<h2 class=" text-center mb-0 small-title"><span>'.$title.'&nbsp;'.$sectitle.'</span></h2>');
-                                        }   else  { // Small post title
-                                            echo('<h2 class=" text-center sr-nobefore small-title"><span>'.$title.'</span></h2>');
-                                        } ?>
+                                        <h2 class="text-uppercase"><?php echo $thecontent;?></h2>
+                                        <?php echo get_the_post_thumbnail( $theid, 'sr-home-banner' ); ?>
                                     </a>
+                                    <div class="overlay "></div>
                                 </div>
-                                <div class='sr-hb-info col-12 col-lg-4 offset-sm-0 offset-lg-1 text-sm-center text-lg-left'>
-                                    <?php echo ('<p class="mx-auto">'.$theexcerpt.'</p>')?>
-                                    <a class="btn btn-warning px-4 align-middle text-lowercase   " href="<?php echo $thelink; ?>">
-                                        Ler mais
-                                    </a>
-                                </div>                         
+                                                
                         <?php 
                         wp_reset_query();?>
                     </div>  
-                    <a href="<?php echo $thelink; ?>" class="homeban-overlay"> &nbsp; </a> 
+                   
                 </div>
         </div>
     <?php endforeach;?>
        
-        <a href="#" class="sr-cycle-prev"><i class="fas fa-chevron-left"></i></a>  
-        <a href="#" class="sr-cycle-next"><i class="fas fa-chevron-right"></i></a>
+    <span class="cycle-pager"></span>
 
  </div>   

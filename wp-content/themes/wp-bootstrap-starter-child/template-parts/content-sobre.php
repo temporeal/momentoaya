@@ -26,7 +26,7 @@
 	</header><!-- .entry-header -->
     <?php } ?>
 
-	<div class="entry-content pb-5 sr-bottom-line">
+	<div class="entry-content pb-5 ">
 		<?php
 			the_content();
 

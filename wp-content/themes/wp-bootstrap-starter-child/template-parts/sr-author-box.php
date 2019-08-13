@@ -15,7 +15,7 @@ $authorid = get_the_author_ID();
 		$idimagemautor = $autimgarr['ID'];
 	?>
 		<div class="container">
-			<div id="sr-author-box" class="row sr-bottom-line">			
+			<div id="sr-author-box" class="row ">			
 				<div class="col-md-10 ml-auto mr-auto">
 					<div class="row">
 						<div class="sr-auth-img-wrap col-6 col-md-5 col-lg-4 mx-auto  ">
