@@ -132,10 +132,13 @@ body.page-id-88 header#masthead {
 	.momento-aya-head h2 {
 		font-size: 4rem;
 	}
-.momento-aya-content {
+.momento-aya-content, .video-destaque {
 	background:#0d163c;
 	color: #fff;
 	padding: 10rem 0;
+}
+.video-destaque {
+	padding: 0;
 }
 body.page-id-88 section#primary .eventos-aya {
 	background-image: url(img/bg-blue-pink-top.png);

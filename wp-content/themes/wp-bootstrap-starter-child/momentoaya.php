@@ -3,6 +3,12 @@
 * Template Name: Momento Aya
  */
 get_header();
+
+$yt = get_field('destaque_youtube');
+if($yt) {
+$yt = str_replace('watch?v=', 'embed/', $yt); // Convert from watch to embed
+$yt = $yt.'?color=white&controls=0?rel=0';
+}
 $bgimage = get_the_post_thumbnail_url($post, 'full');
 if ($bgimage) : 
 ?>
@@ -39,13 +45,28 @@ if ($bgimage) :
                 endif;        
              
         ?>
-              
-             
+        <!-- VIDEO
+	================================================== -->
+    <?php if($yt):?>
+		<div class="container-fluid m-0 p-0 video-destaque">
+			<div class="row no-gutters">
+				<div class="col-sm-12 col-md-10 content offset-md-1 ">								
+						<div class="embed-responsive embed-responsive-16by9">
+								<iframe class="embed-responsive-item" src="<?php echo $yt;?>" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+						</div>				
+				</div>
+			</div>
+		</div>      
+            <?php endif;?>
       <?php
        get_template_part('template-parts/eventos', 'eventos');
-      get_template_part('template-parts/ativacoes', 'ativacoes');
-      get_template_part('template-parts/sr-instagram', 'instagram');
+      get_template_part('template-parts/ativacoes', 'ativacoes');    
       ?>
+
+ 
+
+      
+      <?php   get_template_part('template-parts/sr-instagram', 'instagram');?>
 
      
 

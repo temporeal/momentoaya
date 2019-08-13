@@ -413,3 +413,65 @@ function custom_taxonomy() {
 add_action( 'init', 'custom_taxonomy', 0 );
   
   }
+
+/** We´re off to the cases */
+if ( ! function_exists('register_cases') ) {
+
+  // Register Custom Post Type
+  function register_cases() {
+  
+    $labels = array(
+      'name'                  => _x( 'cases', 'Post Type General Name', 'momentoaya' ),
+      'singular_name'         => _x( 'case', 'Post Type Singular Name', 'momentoaya' ),
+      'menu_name'             => __( 'Cases', 'momentoaya' ),
+      'name_admin_bar'        => __( 'Cases', 'momentoaya' ),
+      'archives'              => __( 'Arquivo de cases', 'momentoaya' ),
+      'attributes'            => __( 'Atributos', 'momentoaya' ),
+      'parent_item_colon'     => __( 'Item pai', 'momentoaya' ),
+      'all_items'             => __( 'Todos os cases', 'momentoaya' ),
+      'add_new_item'          => __( 'Adicionar novo case', 'momentoaya' ),
+      'add_new'               => __( 'Adicionar novo', 'momentoaya' ),
+      'new_item'              => __( 'Novo item', 'momentoaya' ),
+      'edit_item'             => __( 'Editar item', 'momentoaya' ),
+      'update_item'           => __( 'Atualizar item', 'momentoaya' ),
+      'view_item'             => __( 'Visualizar item', 'momentoaya' ),
+      'view_items'            => __( 'Ver items', 'momentoaya' ),
+      'search_items'          => __( 'Buscar item', 'momentoaya' ),
+      'not_found'             => __( 'Não encontrado', 'momentoaya' ),
+      'not_found_in_trash'    => __( 'Não encontrado na lixeira', 'momentoaya' ),
+      'featured_image'        => __( 'Imagem do case', 'momentoaya' ),
+      'set_featured_image'    => __( 'Definir imagem', 'momentoaya' ),
+      'remove_featured_image' => __( 'Remover imagem em destaque', 'momentoaya' ),
+      'use_featured_image'    => __( 'Usar como imagem principal', 'momentoaya' ),
+      'insert_into_item'      => __( 'Inserir no item', 'momentoaya' ),
+      'uploaded_to_this_item' => __( 'Atualizado para este item', 'momentoaya' ),
+      'items_list'            => __( 'Lista de cases', 'momentoaya' ),
+      'items_list_navigation' => __( 'Lista de navegação de cases', 'momentoaya' ),
+      'filter_items_list'     => __( 'Filtras lista de cases', 'momentoaya' ),
+    );
+    $args = array(
+      'label'                 => __( 'case', 'momentoaya' ),
+      'description'           => __( 'Cases de sucesso - AYA Live Marketing', 'momentoaya' ),
+      'labels'                => $labels,
+      'supports'              => array( 'title', 'editor', 'thumbnail', 'custom-fields', 'post-formats' ),
+      'taxonomies'            => array( 'tipodecase' ),
+      'hierarchical'          => false,
+      'public'                => true,
+      'show_ui'               => true,
+      'show_in_menu'          => true,
+      'menu_position'         => 5,
+      'menu_icon'             => 'dashicons-lightbulb',
+      'show_in_admin_bar'     => true,
+      'show_in_nav_menus'     => true,
+      'can_export'            => true,
+      'has_archive'           => true,
+      'exclude_from_search'   => true,
+      'publicly_queryable'    => true,
+      'capability_type'       => 'post',
+    );
+    register_post_type( 'cases', $args );
+  
+  }
+  add_action( 'init', 'register_cases', 0 );
+  
+  }
