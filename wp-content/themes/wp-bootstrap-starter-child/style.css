@@ -104,6 +104,7 @@ body.single-cases #page .site-content {
 /** Cases **/
 .mais-cases {
 	z-index: 1;
+	overflow: hidden;
 }
 .sr-sec-title {
 	z-index: 2;
@@ -116,11 +117,7 @@ body.single-cases #page .site-content {
 	z-index: 0;
 	display: block;
 }
-.mais-cases svg.snapme {
-	width: 602px;
-    height: 602px;
-   
-}
+
 .mais-cases a {
 	display: block;
 	transition: 0.7s;
@@ -1463,21 +1460,7 @@ article .entry-content p, article .entry-content blockquote, article .entry-cont
 	z-index: -1;
 	display: block;
 }
-	svg.snapme-mask1 {
-		width: 602px;
-		height: 602px;
-		top: -60px;
-		left: 80px;
-	}
-	svg.snapme-mask2 {
-		width: 600px;
-		height: 490px;
-		top: -60px;
-		left: -80px;
-		-webkit-transform: rotate(180deg);
-		-ms-transform: rotate(180deg);
-			transform: rotate(180deg);
- }
+	
 .sr-auth-img-wrap img  {
     -webkit-mask-image: url(img/shapes/quem-e-aya/aya-mascara-fotos-01.svg);
     mask-image: url(img/shapes/quem-e-aya/aya-mascara-fotos-01.svg);
@@ -2074,45 +2057,7 @@ body:not(.theme-preset-active) footer#colophon {
 	#cat-list .bot-align {
 		bottom:0 !important;
 	}
-		#cat-list a.load-aqui {
-			background-position: -15px -36px;
-   			left: 18%;
-		}
-		#cat-list a.load-gringolandia {
-			background-position: -205px -246px;
-			left: 50%
-		}
-		#cat-list a.load-fatness {
-			background-position: -546px -36px;
-			left: 65%;
-			bottom: 25%;
-			top: inherit !important;
-		}
-		#cat-list a.load-vem {
-			background-position: -15px -246px;
-			left: 2%;
-			bottom: 25% !important;
-			top: inherit !important;
-		}
-		#cat-list a.load-challenge {
-			background-position: -364px -36px;
-			left: 33.5%;
-    		bottom: 25% !important;
-			top: inherit !important;
-		}
 	
-		#cat-list a.load-brasilzao {
-			background-position: -187px -36px;
-			left: 17%;
-			bottom: -5% !important;
-			top: inherit !important;
-		}
-		#cat-list a.load-noi {
-			background-position: -385px -246px;
-			left: 49%;
-			bottom: -5% !important;
-			top: inherit !important;
-		}
 		a.sr-author-cycle-next {
 			display: block;
 		}
@@ -2212,50 +2157,7 @@ body:not(.theme-preset-active) footer#colophon {
 			top: 0 !important;
 			bottom: inherit !important;
 		}
-		#cat-list a.load-challenge {
-			background-position: -364px -36px;
-			left: 0;
-		}
-		#cat-list a.load-gringolandia {
-		    background-position: -196px -246px;
-    		left: 12.4%;
-   		
-		}
-		#cat-list a.load-brasilzao {
-			background-position: -187px -36px;
-			   left: 24%;
-			   background-size:co
-		}
-		#cat-list a.load-aqui {
-			background-position: -15px -36px;
-			left:37.2%;
-		}
-		#cat-list a.load-noi {
-			background-position: -385px -246px;
-			left: 48%;
-		}
-		#cat-list a.load-fatness {
-			background-position: -546px -36px;
-			left: 61%;
-		
-		}
-		#cat-list a.load-vem {
-			background-position: -15px -246px;
-			left: 72%
-		}
-	.home-author img {
-			-webkit-mask-image:url(img/authormask.png);
-			mask-image:url(img/authormask.png);
-			mask-type: luminance;
-			-webkit-mask-size: contain;
-			mask-size: contain;
-			-webkit-mask-repeat: no-repeat;
-			mask-repeat: no-repeat;
-			-webkit-mask-position: center;
-			mask-position: center;
 	
-	}
-
 	footer {
 		text-align: left;
 	}
@@ -2288,6 +2190,7 @@ body:not(.theme-preset-active) footer#colophon {
 			margin-top: -100px;
 
 		}	
+	
 }
 @media (min-width: 992px) {
 	body:not(.theme-preset-active) #masthead #left-nav .navbar-nav > li {
@@ -2373,6 +2276,28 @@ body:not(.theme-preset-active) footer#colophon {
 	a#back-to-top {
 		padding-top: 0; 
 	}
+	/** Cases **/
+	.mais-cases svg.snapme {
+		width: 602px;
+		height: 602px;
+	   
+	}
+	/** Quem é AYA **/
+	svg.snapme-mask1 {
+		width: 602px;
+		height: 602px;
+		top: -60px;
+		left: 80px;
+	}
+	svg.snapme-mask2 {
+		width: 600px;
+		height: 490px;
+		top: -60px;
+		left: -80px;
+		-webkit-transform: rotate(180deg);
+		-ms-transform: rotate(180deg);
+			transform: rotate(180deg);
+ }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
