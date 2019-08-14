@@ -80,7 +80,7 @@ body.page-id-22 {
 	background: #9ad9e7;
 	
 }
-body.page-id-22 #page .site-content, body.single-cases #page .site-content {
+body.page-id-22 #page .site-content {
 	background-image: url(img/bg_quem_e_aya_content.png), url(img/shapes/quem-e-aya/aya-linha-01.svg), url(img/shapes/quem-e-aya/aya-linha-02.svg), url(img/shapes/quem-e-aya/aya-linha-03.svg);
 	background-color:  #9ad9e7;
 	background-position-x: center , left, left, right;
@@ -90,9 +90,78 @@ body.page-id-22 #page .site-content, body.single-cases #page .site-content {
 	padding-bottom: 5rem;
 
 }
+
 body.single-cases #page .site-content {
-	padding: 0 0 10rem 0 ;
+	background-image: url(img/bg_quem_e_aya_content.png);
+	background-color:  #9ad9e7;
+	background-position-x: center ;
+	background-position-y: bottom ;
+	background-size:contain; 
+	background-repeat: no-repeat;
+
+	padding: 0 0 12rem 0 ;
 }
+/** Cases **/
+.mais-cases {
+	z-index: 1;
+}
+.sr-sec-title {
+	z-index: 2;
+}
+.mais-cases div {
+	z-index: 2;;
+}
+.mais-cases svg{
+    position: absolute;
+	z-index: 0;
+	display: block;
+}
+.mais-cases svg.snapme {
+	width: 602px;
+    height: 602px;
+   
+}
+.mais-cases a {
+	display: block;
+	transition: 0.7s;
+}
+.mais-cases .mask1 a, .mais-cases .mask2 a:hover  {
+    -webkit-mask-image: url(img/shapes/quem-e-aya/aya-mascara-fotos-01.svg);
+    mask-image: url(img/shapes/quem-e-aya/aya-mascara-fotos-01.svg);
+    mask-type: luminance;
+    -webkit-mask-size: 93%;
+    mask-size: 93%;	
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+	mask-position: center;
+	width: 100%;
+	z-index: 1;
+}
+	
+.mais-cases .mask2 a, .mais-cases .mask1 a:hover  {
+	-webkit-mask-image: url(img/shapes/quem-e-aya/aya-mascara-fotos-02.svg);
+	mask-image: url(img/shapes/quem-e-aya/aya-mascara-fotos-02.svg);
+	-webkit-mask-size: 84%;
+	mask-size: 84%;
+	margin-right: inherit;
+	-webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+	mask-position: center;
+	width: 100%;
+	z-index: 1;
+}
+
+.tooltip-inner  {
+	background: #0d163c
+}
+.bs-tooltip-auto[x-placement^=top] .arrow::before, .bs-tooltip-top .arrow::before {
+	border-top-color:#0d163c
+}
+
+
+
 /** Momentos Aya **/
 
 body.page-id-88 {
@@ -1354,7 +1423,7 @@ body.single div.entry-content, body.page div.entry-content, .list-module .entry-
 	margin-top:1rem;
 }
 article .entry-content p, article .entry-content blockquote, article .entry-content ul, article .entry-content ol, #sr-author-box p {
-	line-height: 1.8;
+	line-height: 1.55;
 	color: #0d163c;
 }
 
@@ -1422,6 +1491,7 @@ article .entry-content p, article .entry-content blockquote, article .entry-cont
 	width: 100%;
 	z-index: 1;
 }
+
 	.sr-auth-img-wrap img.mask2 {
 		-webkit-mask-image: url(img/shapes/quem-e-aya/aya-mascara-fotos-02.svg);
 		mask-image: url(img/shapes/quem-e-aya/aya-mascara-fotos-02.svg);
@@ -1908,8 +1978,16 @@ body:not(.theme-preset-active) footer#colophon {
 		min-height: 320px;
 	}
 	.client-col {
-		background:#cdde62
-	}
+		font-size: 1rem;
+		border-left: 5px solid
+	}	
+		.client-col p {
+			font-size: 1rem;
+		
+		}
+		.client-col p i {
+			color: rgba(241,104,120,1);
+		}
 	.year-col {
 		background:#f16879
 	}

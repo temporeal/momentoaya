@@ -1,12 +1,13 @@
 /* Common to all pages**/
-var win = jQuery(window);   
+var win = jQuery(window);  
+var body = jQuery('body');
 var didScroll = false;   
 var scrollPos = win.scrollTop();  
 
-/** QUem é AYA - START */
-if(jQuery('body').hasClass('page-template-quemeaya')) {
+/** QUem é AYA e cases- START */
+if(body.hasClass('page-template-quemeaya')  ) {
     /** Snap SVG */
-
+   
     var smasks = [ Snap(".snapme-mask1"), Snap(".snapme-mask2"), Snap(".snapme-mask3")];
 
     // Mask 1
@@ -22,8 +23,24 @@ if(jQuery('body').hasClass('page-template-quemeaya')) {
     // Mask 2
     var originalpathm3 = "m226.243238,18.776128c34.614997,32.730584 -1.121421,103.358806 29.788629,121.287344c30.171899,17.499134 70.724039,-46.003097 145.756322,-56.386886c83.183877,-11.515857 190.421521,44.785858 196.827105,111.712681c6.568829,68.662186 -93.443458,143.939336 -179.803511,147.885602c-66.217063,3.023578 -79.010488,-37.965064 -176.60959,-48.941503c-90.277928,-10.153117 -112.617625,21.175691 -158.524905,-2.12928c-58.232262,-29.561506 -107.57478,-123.264026 -71.281201,-202.146757c41.847452,-90.955749 173.344694,-109.579852 213.847151,-71.281201z";
     var transformpathm3 = "m225.052762,17.585652c34.614997,32.730584 28.640482,78.358806 113.121957,47.477825l101.708705,-24.244031c98.660067,-29.372999 146.373904,-7.595091 152.779488,59.331732c6.56883,68.662186 -32.729175,239.177426 -119.089227,243.123692c-87.645634,3.023576 -92.105726,-123.679346 -189.704828,-134.655785c-90.277929,-10.153118 -132.85572,147.366159 -178.762999,124.061188c-58.232263,-29.561506 -130.193827,-164.93069 -93.900247,-243.813421c41.847452,-90.955749 173.344694,-109.579852 213.847151,-71.2812z";
-    var pathm3 = smasks[2].path(originalpathm2).attr({ fill: "#f16879" });
-} /*QUem é AYA - END */
+    var pathm3 = smasks[2].path(originalpathm3).attr({ fill: "#f16879" });
+} /*QUem é AYA - END  CASE Start */
+
+if(body.hasClass('single-cases')) {
+
+    var smask = Snap(".snapme");
+    var originalpathm1 = "m87.045399,18.812277c35.202932,-35.543958 113.606829,-10.111754 118.477716,-8.470967c12.711276,4.282133 22.507742,9.452222 30.57012,15.175674c43.535558,30.898278 69.199402,57.018969 83.770237,70.930272c61.494136,58.711232 144.675621,-5.774928 213.147929,45.169911c52.138431,38.790143 63.923145,120.832728 50.81615,180.68286c-18.624545,85.060347 -92.945778,150.489155 -163.184345,155.273177c-59.715008,4.066579 -71.01392,-37.34239 -127.60178,-32.465069c-90.018098,7.753525 -109.141314,116.656764 -179.061376,114.337141c-56.330482,-1.865993 -115.202576,-74.91642 -113.960725,-138.33446c1.261154,-64.37034 63.485602,-69.389219 91.166649,-149.626938c39.24699,-113.770908 -50.668157,-205.693607 -4.140575,-252.671601z";
+    var transformpathm1 = "m91.1223,19.81228c35.202932,-35.543958 113.606829,-10.111754 118.477716,-8.470966c12.711276,4.282133 22.507742,9.452222 30.57012,15.175674c43.535558,30.898278 81.507062,52.403596 96.077898,66.314899c61.494136,58.711232 156.983281,-51.928655 225.45559,-0.983816c52.138431,38.790143 39.307824,171.601828 26.200828,231.45196c-18.624545,85.060346 16.28471,239.719694 -53.953858,244.503715c-59.715008,4.066579 -95.629242,-106.57298 -152.217102,-101.695659c-90.018099,7.753524 -193.75648,96.656815 -263.676542,94.337192c-56.330482,-1.865993 -115.202575,-74.91642 -113.960724,-138.33446c1.261154,-64.37034 163.485342,-32.466238 191.16639,-112.703957c39.24699,-113.770908 -150.667898,-242.616588 -104.140316,-289.594582z";
+    var pathm1 = smask.path(originalpathm1).attr({ fill: "#cdde61" });
+    jQuery('.mais-cases a').hover(
+        function() {
+            pathm1.animate({d:transformpathm1}, 5000, mina.elastic).attr({ fill: "#f16879" });
+        }, function() {
+            pathm1.animate({d:originalpathm1}, 5000, mina.elastic).attr({ fill: "#cdde61" });
+        }
+      );   
+  
+}
 /** Scroll actionos*/
     win.scroll(function() {
         didScroll = true;
@@ -51,6 +68,10 @@ if(jQuery('body').hasClass('page-template-quemeaya')) {
     }
 
 jQuery(document).ready(function($){
+    // tool the tips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      });
     backtop =  $("a#back-to-top");
     backtop.hide();
        // Add bootstrap classes to text widget
@@ -114,7 +135,7 @@ jQuery(document).ready(function($){
 
 
     /** Quem é aya */
-    if(jQuery('body').hasClass('page-template-quemeaya')) {
+    if(body.hasClass('page-template-quemeaya')) {
         // SVG ANIMATIONS 
         var animatemask1 = jQuery('.snapme-mask1').parent().waypoint({
             handler: function(direction) {
@@ -146,7 +167,7 @@ jQuery(document).ready(function($){
       } /*end quem e aya **/
 
       /** Momentos AYA */
-      if(jQuery('body').hasClass('page-template-momentoaya')) {
+      if(body.hasClass('page-template-momentoaya')) {
 
         jQuery('.ativacoes-aya .do-owl ').owlCarousel({
             loop:true,
@@ -171,7 +192,7 @@ jQuery(document).ready(function($){
               }
         })    
      
-        jQuery('a.image, ').magnificPopup({
+        jQuery('a.image').magnificPopup({
             image: {
                 markup: '<div class="mfp-figure">'+
                           '<div class="mfp-close"></div>'+
@@ -194,9 +215,7 @@ jQuery(document).ready(function($){
               
                 tError: '<a href="%url%">A imagem</a> não pôde ser carregada.' // Error message
               },
-            type:'image',
-         
-
+            type:'image',        
            
         });
 

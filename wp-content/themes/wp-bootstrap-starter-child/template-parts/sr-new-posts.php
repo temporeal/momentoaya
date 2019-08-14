@@ -7,13 +7,14 @@
             </hgroup>
         </div>
 	</div>
-	<div id="aindafome" class='row align-items-center justify-content-center '>
+	<div class='row align-items-center justify-content-center mais-cases'>
+				<svg  viewBox="0 0 600 600" class="snapme"><defs></defs></svg>
 					<?php 	
 						$excludethis = get_the_ID();
 						global $post;
 						$the_query = new WP_Query( array(
 							'post__not_in' => array($excludethis), //Exclude current
-							'post_type' => 'post',
+							'post_type' => 'cases',
 							'posts_per_page' => 5,
 						) );		
 						if ($the_query->have_posts() ) : ?>							
@@ -25,13 +26,13 @@
 							$i++;
 						
 							$size = 'sr-grid-thumb';
-							$commonclass = 'col-6 col-md-3 col-lg-2 align-self-center mx-0 px-0 order-md-';
-							$commonclasss2 = 'col-3 col-md-1 col-lg-1 align-self-center mx-0 px-0 order-md-'; 
+							$commonclass = 'col-6 col-md-3 col-lg-2 align-self-center mx-0 px-0 mask2 order-md-';
+							$commonclasss2 = 'col-3 col-md-1 col-lg-1 align-self-center mx-0 px-0 mask1 order-md-'; 
 							$link = get_the_permalink();
 							$title = get_the_title();
 
 							if($i==1) {								
-								$srclass = 'col-12 col-md-4 mx-0 px-0 text-center align-self-center order-md-3';								
+								$srclass = 'col-12 col-md-4 mx-0 px-0 text-center align-self-center mask1  order-md-3';								
 							} elseif ($i ==2 ) {								
 								$srclass = $commonclass.$i;							
 							} elseif ($i ==5 ) {								
@@ -46,7 +47,7 @@
 							?>
 							
 								<div class="<?php echo $srclass;?> ">
-									<a href='<?php echo $link;?>' title='<?php echo $title;?>'>
+									<a data-toggle="tooltip" data-placement="bottom"  href='<?php echo $link;?>' title='<?php echo $title;?>'>
 										<?php 
 											the_post_thumbnail($size) 
 										?>

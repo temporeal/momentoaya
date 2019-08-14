@@ -30,12 +30,11 @@ $ano = get_field('ano');
             <div class='containe p-4 my-4'>
         <div class="row ">
 
-            <div class='col-sm-6 p-4 client-col '>
-                <p class="font-weight-light"><span class='font-weight-bold'>Cliente:</span> <?php echo $cliente ?></p>
+            <div class='col-sm-12 px-4 py-0 my-0 client-col '>
+                <p class="font-weight-light "><span class='font-weight-bold'> Cliente</span> <i class="fa fa-angle-right"></i> <?php echo $cliente ?> </p>
+                <p class="font-weight-light"><span class='font-weight-bold'>  Ano</span> <i class="fa fa-angle-right"></i> <?php echo $ano ?></p>
             </div>
-            <div class='col-sm-6 p-4 year-col '>
-                <p class="font-weight-light"><span class='font-weight-bold'>Ano:</span> <?php echo $ano ?></p>
-            </div>
+         
             
         </div>
     </div>
