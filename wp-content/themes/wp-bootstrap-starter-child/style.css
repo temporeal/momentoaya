@@ -120,6 +120,8 @@ body.single-cases #page .site-content {
 
 .mais-cases a {
 	display: block;
+	-webkit-transition: 0.7s;
+	-o-transition: 0.7s;
 	transition: 0.7s;
 }
 .mais-cases .mask1 a, .mais-cases .mask2 a:hover  {
@@ -156,7 +158,58 @@ body.single-cases #page .site-content {
 .bs-tooltip-auto[x-placement^=top] .arrow::before, .bs-tooltip-top .arrow::before {
 	border-top-color:#0d163c
 }
+.mais-cases .card {
+	border: 1px solid #fff;
+}
+.mais-cases .card a:hover {
+	text-decoration: none;
+}
+	.mais-cases .card:hover {
+		border:1px solid #f9bbb5;
+	}
+.mais-cases .card img {
+	margin:auto;
+}
+.mais-cases .card .card-img {
+	position: relative
+}
+	.mais-cases .card .card-img::after {
+		-webkit-transition: all 0.2s;
+		-moz-transition: all 0.2s;
+		transition: all 0.2s;
+		-webkit-transition-delay: 0s;
+		-moz-transition-delay: 0s;
+		transition-delay: 0s;
+		opacity: 1;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		content: "";
+		
+		background: rgba(241,104,120,1);
+		background: -moz-linear-gradient(top, rgba(241,104,120,1) 0%, rgba(241,104,120,0.99) 1%, rgba(154,217,231,0.56) 56%, rgba(154,217,231,0.21) 100%);
+		background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(241,104,120,1)), color-stop(1%, rgba(241,104,120,0.99)), color-stop(56%, rgba(154,217,231,0.56)), color-stop(100%, rgba(154,217,231,0.21)));
+		background: -webkit-linear-gradient(top, rgba(241,104,120,1) 0%, rgba(241,104,120,0.99) 1%, rgba(154,217,231,0.56) 56%, rgba(154,217,231,0.21) 100%);
+		background: -o-linear-gradient(top, rgba(241,104,120,1) 0%, rgba(241,104,120,0.99) 1%, rgba(154,217,231,0.56) 56%, rgba(154,217,231,0.21) 100%);
+		background: -ms-linear-gradient(top, rgba(241,104,120,1) 0%, rgba(241,104,120,0.99) 1%, rgba(154,217,231,0.56) 56%, rgba(154,217,231,0.21) 100%);
+		background: linear-gradient(to bottom, rgba(241,104,120,1) 0%, rgba(241,104,120,0.99) 1%, rgba(154,217,231,0.56) 56%, rgba(154,217,231,0.21) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f16878', endColorstr='#9ad9e7', GradientType=0 );
+	}
+	.mais-cases .card:hover  .card-img::after {
+		opacity: 0;
+	}
 
+.mais-cases .card-title {
+	color:rgb(241, 104, 121);
+	font-size: 2rem;
+	line-height: 1.86rem;
+	margin-bottom: .75rem;
+}
+.mais-cases .card-text {
+	font-size: 1rem;
+}
 
 
 /** Momentos Aya **/
@@ -209,11 +262,13 @@ body.page-id-88 header#masthead {
 .video-destaque {
 	padding: 0;
 }
-body.page-id-88 section#primary .eventos-aya {
+body.page-id-88 section#primary .cases-aya {
 	background-image: url(img/bg-blue-pink-top.png);
 	background-repeat: no-repeat;
 	background-position: left top;
-	padding-top: 197px;
+
+	padding-top: 87px;
+	padding-bottom: 40px;
 	margin-top: -1px;
 
 }
@@ -1764,7 +1819,7 @@ body:not(.theme-preset-active) footer#colophon {
 	}
 
 	footer p.social a {
-		padding:1rem;
+		padding:.5rem;
 	}
 		
 		footer p.social a:hover { 
@@ -2165,7 +2220,7 @@ body:not(.theme-preset-active) footer#colophon {
 		padding: 3rem 0 10rem 0;
 	}
 	footer p.social a:first-child {
-		padding: 1rem 1rem 1rem 0;
+		padding: .5rem .5rem .5rem 0;
 	}
 
 	

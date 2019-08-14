@@ -59,6 +59,7 @@ if ($bgimage) :
 		</div>      
             <?php endif;?>
       <?php
+      get_template_part('template-parts/cases', 'cases');
        get_template_part('template-parts/eventos', 'eventos');
       get_template_part('template-parts/ativacoes', 'ativacoes');    
       ?>

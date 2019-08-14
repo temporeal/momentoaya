@@ -32,6 +32,7 @@
 					$endereco = get_option('endereco');
 					$facebook = get_option('facebookurl');
 					$instagram = get_option('instagramurl');
+					$youtube = get_option('youtubeurl');
 
 					if(isset($endereco)):
 					?> 
@@ -44,10 +45,13 @@
 					?> 
 						<p class="social">
 							<?php if(isset($facebook)):?>
-								<a href="<?php echo($facebook);?>" title="Facebook Momento Aya"> <i class="fab fa-facebook-square"></i> </a>
+								<a target="_blank" href="<?php echo($facebook);?>" title="Facebook Momento Aya"> <i class="fab fa-facebook-square"></i> </a>
 							<?php endif;?>
 							<?php if(isset($instagram)):?>
-								<a href="<?php echo($facebook);?>" title="Instagram Momento Aya"> <i class="fab fa-instagram"></i> </a>
+								<a target="_blank" href="<?php echo($instagram);?>" title="Instagram Momento Aya"> <i class="fab fa-instagram"></i> </a>
+							<?php endif;?>
+							<?php if(isset($youtube)):?>
+								<a target="_blank" href="<?php echo($youtube);?>" title="Youtube Momento Aya"> <i class="fab fa-youtube"></i> </a>
 							<?php endif;?>
 						</p>
 

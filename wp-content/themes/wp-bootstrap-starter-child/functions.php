@@ -210,12 +210,16 @@ function editglobalcustomfields() {
     
 	<p><strong>E-mail:</strong><br />
 	<input type="text" name="emaildecontato" size="45" value="<?php echo get_option('emaildecontato'); ?>" /></p>
-
+<h3>Redes sociais</h3>
+<hr/>
 	<p><strong>Facebook:</strong><br />
     <input type="text" name="facebookurl" size="45" value="<?php echo get_option('facebookurl'); ?>" /></p>
     
     <p><strong>Instagram:</strong><br />
     <input type="text" name="instagramurl" size="45" value="<?php echo get_option('instagramurl'); ?>" /></p>
+
+    <p><strong>Youtube:</strong><br />
+    <input type="text" name="youtubeurl" size="45" value="<?php echo get_option('youtubeurl'); ?>" /></p>
 	<!-- <h3>Layout</h3>
     <label for="home-banner-enable">Na página inicial, exibir</label>
             <select name="home-banner-enable">
@@ -250,7 +254,7 @@ function editglobalcustomfields() {
 	<p><input type="submit" name="Submit" value="Atualizar" /></p>
 
 	<input type="hidden" name="action" value="update" />
-	<input type="hidden" name="page_options" value="endereco, whatsapp, telefone,emaildecontato,facebookurl, instagramurl" />
+	<input type="hidden" name="page_options" value="endereco, whatsapp, telefone,emaildecontato,facebookurl, instagramurl, youtubeurl" />
 
 	</form>
 	</div>
