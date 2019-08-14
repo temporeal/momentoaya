@@ -65,12 +65,14 @@
 
     ?>
     <div id="content" class="site-content <?php if($nopadclass){echo $nopadclass;} ?>">
-    <?php if(is_page('88')):?>
+    <?php
+  
+    if(is_page(88) || is_page('contato') ):?>
 		<div class="container-fluid">
     <?php elseif(is_singular('cases')):?>
      <div class="container py-4">
     <?php else:?>
      <div class="container">
     <?php endif;?>
-			<div class="row">
+	    <div class="row">
                 <?php endif; ?>

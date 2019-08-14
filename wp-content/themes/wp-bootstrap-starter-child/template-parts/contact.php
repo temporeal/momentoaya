@@ -6,45 +6,47 @@
  *
  * @package WP_Bootstrap_Starter
  */
-$htags = ['h1', 'h2'];
+$endereco = get_option('endereco');
+$facebook = get_option('facebookurl');
+$instagram = get_option('instagramurl');
+$youtube = get_option('youtubeurl');
+$wzp = get_option('whatsapp');
+if($wzp) {
+$wzpgetnum = preg_replace("/[^0-9]/","", $wzp);
+$wzpgetnum = '55'.$wzpgetnum;
+}
+$email = get_option('emaildecontato');
 ?>
-<?php if(!is_page('110')):
-$htags = ['h4', 'h6'];
-?>
-<div id="contact" class="content-area col-sm-10 col-md-12 col-lg-8 mx-auto">
-<?php endif;?>
-    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>	
-        <div class="row">
-            <div class="col-12 col-md-10 col-lg-10 col-xl-8 mx-auto mb-4 pt-5 sr-sec-title">
-                <header class="entry-header sr-sec-title">
-                    <hgroup>
-                            <<?php echo $htags[0];?> class='pb-0'>Fala com a gente</<?php echo $htags[0];?>>
-                            <<?php echo $htags[1];?>>Type something funny here</<?php echo $htags[10];?>>
-                    </hgroup>
-                </header><!-- .entry-header -->
+<div class="container pb-4">
+    <div class="row">
+        <div class="col-12 col-md-10 mx-auto">
+            <h1><?php the_title();?></h1>
+        <div class="container p-0 m-0">
+            <div class="row">
+
+            <div id="contact" class=" col-sm-12 col-md-6 ">
+                <?php  the_content(); ?>
+                <?php if($email):?>
+                    <p class='font-weight-bold'>
+                        <a href="https://wa.me/<?php echo $wzpgetnum?>"><i class="fa fa-envelope"></i> <?php echo $email?></a>     
+                    </p>
+                <?php endif?>
+                <?php if($wzp):?>
+                    <p class='font-weight-bold'>
+                        <a href="https://wa.me/<?php echo $wzpgetnum?>"><i class="fab fa-whatsapp"></i> <?php echo $wzp?></a>     
+                    </p>
+                <?php endif;?>
+
+            </div>
+            <div class=" col-sm-12 col-md-6 ">
+             
+            
+                <?php  echo do_shortcode('[contact-form-7 id="177" title="Atendemos em todo o Brasil"]');  ?>
+            </div>
+
             </div>
         </div>
-        
-        <div class="pb-5 ">
-            <div class='row'>
-                <div class="col-md-5 ">
-                    <?php
-                        if(!is_page('110')) {
-                            $contactconten = apply_filters('the_content', get_post_field('post_content', '110'));
-                            echo $contactconten;
-                        } else {
-                            the_content();
-                        }
-                    ?>
-                </div>
-                <div class="col-md-6 offset-md-1">
-                    <?php
-                        echo do_shortcode('[contact-form-7 id="165" title="Fala com a gente"]'); 
-                    ?>
-                </div>
-            </div>
-        </div><!-- .entry-content -->
-    </article><!-- #post-## -->
-<?php if(!is_page('110')):?>
+
+        </div>
+    </div>
 </div>
-<?php endif;?>

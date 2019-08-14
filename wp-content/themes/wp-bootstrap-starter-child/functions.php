@@ -485,3 +485,5 @@ if ( ! function_exists('register_cases') ) {
 
   /** Since we are converting galleries to carousel, no need for inline css */
   add_filter( 'use_default_gallery_style', '__return_false' );
+
+  

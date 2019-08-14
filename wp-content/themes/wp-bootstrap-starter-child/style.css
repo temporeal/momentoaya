@@ -59,6 +59,9 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 .text-blue {
 	color:#0d163c;
 }
+body, h1, h2, h3, h4, h5, h6 {
+	color: #0d163c;
+}
 /** pop up de imagens **/
 .mfp-bg {
 	background: #0d163c !important;
@@ -74,6 +77,50 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 .mfp-figure .mfp-bottom-bar {
 	border-top:1px solid #f16979;
 
+}
+/** Contato **/
+body.page-template-contato {
+	background: #cdde61;	
+}
+body.page-template-contato #content.site-content {
+	padding-bottom: 0;
+}
+body.page-template-contato header#masthead {
+	background-color: #cdde61;	
+}
+#contact h2 {
+	font-size: 2rem;
+}
+#contact .list-group-item {
+	background-color: transparent;
+}
+#contact a {
+	color: #f16979;
+}
+.mapouter{
+	position:relative;
+	width:100%;
+	background:#fff;
+	background-image: url(img/bg_multicolor_blue_pink.png);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    padding-bottom: 200px;
+    margin-bottom: -2px;
+}
+	.mapouter::before {
+		background: url(img/bg-green-top.png) no-repeat top;
+		content: '';
+		min-height: 45px;
+		width: 100%;
+		display: block;
+		position: absolute;
+	}
+
+.gmap_canvas {
+	overflow:hidden;
+	background:none!important;
+	height:500px;
+	width:100%;
 }
 /** Quem é AYA **/
 body.page-id-22 {
@@ -1745,10 +1792,13 @@ form.wpcf7-form label {
 	left: -999rem;
 }
 form.wpcf7-form input[type="email"], form.wpcf7-form input[type="text"], form.wpcf7-form textarea {
-	border:1px solid #f5be16;
-	color:#333;
+	border:1px solid #d6e769;
+	color:#0c143c;
 }
-
+.wpcf7-form-control-wrap {
+	margin-bottom: 1rem;
+	display: block;
+}
 /********* Category ***********/
 .sr-cat-top-pad { /**responsive**/
 	padding-top: 5rem !important;
@@ -1837,18 +1887,19 @@ body:not(.theme-preset-active) footer#colophon {
 		border:1px solid #fff6;
 	}
 	#mailpoet_form-2 input[type="email"]:focus, form.wpcf7-form input[type="email"]:focus, form.wpcf7-form input[type="text"]:focus, form.wpcf7-form textarea:focus {
-		-webkit-box-shadow:0 0 0 0.2rem rgba(245,190,22,.25);
-				box-shadow:0 0 0 0.2rem rgba(245,190,22,.25);
+		-webkit-box-shadow:0 0 0 0.2rem rgba(154, 217, 232,.25);
+				box-shadow:0 0 0 0.2rem rgba(154, 217, 232,.25);
 		-webkit-transition: background 500ms ease-in-out;
 		-moz-transition: background 500ms ease-in-out;
 		-ms-transition: background 500ms ease-in-out;
 		-o-transition: background 500ms ease-in-out;
 		transition: background 500ms ease-in-out;
-		background-color: rgba(256, 256, 256, 0.9);
+	
 	}
 	form.wpcf7-form input[type="email"]:focus, form.wpcf7-form input[type="text"]:focus, form.wpcf7-form textarea:focus {
 		background: #fff;
 		color:#333;
+	
 	}
 
 /******* Responsivity *************
